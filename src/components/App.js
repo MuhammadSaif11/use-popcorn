@@ -92,7 +92,7 @@ export const App = () => {
       </NavBar>
       <Main>
         <ListBox>
-          {!query && <p className="loader">Search Something...</p>}
+          {!query && <p className="loader">Search Any Movie...</p>}
           {!loading && !error && (
             <Movies onSelectMovie={handleSelectedMovie} movies={movies} />
           )}
