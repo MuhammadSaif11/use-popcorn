@@ -36,7 +36,7 @@ export const StarRating = ({
 
   const handleRating = (i) => {
     setRating(i + 1);
-    // onSetRating(i + 1);
+    onSetRating(i + 1);
   }
 
   return (
