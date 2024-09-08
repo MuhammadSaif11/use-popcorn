@@ -12,13 +12,15 @@ import { WatchedBox } from "./WatchedBox";
 import { WatchedMovies } from "./WatchedMovies";
 import { Movies } from "./Movies";
 
-
-
 export const KEY = "ffca9a28";
 
 export const App = () => {
   const [movies, setMovies] = useState([]);
-  const [watched, setWatched] = useState([]);
+  const [watched, setWatched] = useState(() => {
+    return localStorage.getItem("watchedMovies")
+      ? JSON.parse(localStorage.getItem("watchedMovies"))
+      : [];
+  });
   const [selectedMovie, setSelectedMovie] = useState(null);
   const [query, setQuery] = useState("");
   const [loading, setLoading] = useState(false);
@@ -83,6 +85,10 @@ export const App = () => {
       controller.abort();
     };
   }, [query]);
+
+  useEffect(() => {
+    localStorage.setItem("watchedMovies", JSON.stringify(watched));
+  }, [watched]);
 
   return (
     <>
