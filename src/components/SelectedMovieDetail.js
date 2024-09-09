@@ -51,7 +51,7 @@ export const SelectedMovieDetail = ({
       try {
         setLoading(true);
         const res = await fetch(
-          `http://www.omdbapi.com/?apikey=${KEY}&i=${selectedMovie}`
+          `https://www.omdbapi.com/?apikey=${KEY}&i=${selectedMovie}`
         );
         const data = await res.json();
         setMovie(data);

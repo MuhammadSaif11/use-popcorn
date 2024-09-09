@@ -10,11 +10,6 @@ const starContainerStyle = {
   display: "flex",
 };
 
-const textStyle = {
-  lineHeight: "1",
-  margin: "0",
-};
-
 export const StarRating = ({
   maxRating = 5,
   color = "#fcc419",
