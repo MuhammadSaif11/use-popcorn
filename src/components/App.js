@@ -11,16 +11,18 @@ import { SelectedMovieDetail } from "./SelectedMovieDetail";
 import { WatchedBox } from "./WatchedBox";
 import { WatchedMovies } from "./WatchedMovies";
 import { Movies } from "./Movies";
+import { useLocalStorageState } from "../custom-hooks/useLocalStorageState";
 
 export const KEY = "ffca9a28";
 
 export const App = () => {
   const [movies, setMovies] = useState([]);
-  const [watched, setWatched] = useState(() => {
-    return localStorage.getItem("watchedMovies")
-      ? JSON.parse(localStorage.getItem("watchedMovies"))
-      : [];
-  });
+  const [watched, setWatched] = useLocalStorageState([], "watched");
+  // const [watched, setWatched] = useState(() => {
+  //   return localStorage.getItem("watchedMovies")
+  //     ? JSON.parse(localStorage.getItem("watchedMovies"))
+  //     : [];
+  // });
   const [selectedMovie, setSelectedMovie] = useState(null);
   const [query, setQuery] = useState("");
   const [loading, setLoading] = useState(false);
@@ -86,9 +88,9 @@ export const App = () => {
     };
   }, [query]);
 
-  useEffect(() => {
-    localStorage.setItem("watchedMovies", JSON.stringify(watched));
-  }, [watched]);
+  // useEffect(() => {
+  //   localStorage.setItem("watchedMovies", JSON.stringify(watched));
+  // }, [watched]);
 
   return (
     <>

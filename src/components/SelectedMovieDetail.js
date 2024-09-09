@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { KEY } from "./App";
 import { Loader } from "./Loader";
 import { StarRating } from "./StarRating";
+import { useKey } from "../custom-hooks/useKey";
 
 export const SelectedMovieDetail = ({
   selectedMovie,
@@ -71,16 +72,20 @@ export const SelectedMovieDetail = ({
     };
   }, [Title]);
 
-  useEffect(() => {
-    const callback = (e) => {
-      if (e.code === "Escape") onCloseSelectedMovie();
-    };
-    document.addEventListener("keydown", callback);
-
-    return () => {
-      document.removeEventListener("keydown", callback);
-    };
+  useKey("keydown", (e) => {
+    if (e.code === "Escape") onCloseSelectedMovie();
   });
+
+  // useEffect(() => {
+  //   const callback = (e) => {
+  //     if (e.code === "Escape") onCloseSelectedMovie();
+  //   };
+  //   document.addEventListener("keydown", callback);
+
+  //   return () => {
+  //     document.removeEventListener("keydown", callback);
+  //   };
+  // },[onCloseSelectedMovie]);
 
   return (
     <>
